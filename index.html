@@ -21,9 +21,7 @@
       --shadow:0 20px 60px rgba(0,0,0,.35);
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
     html,body{
       margin:0;
@@ -35,9 +33,7 @@
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
 
-    body{
-      min-height:100vh;
-    }
+    body{min-height:100vh}
 
     .wrap{
       width:min(760px,100%);
@@ -60,7 +56,11 @@
     h1{
       font-size:clamp(2.4rem,8vw,4.6rem);
       line-height:.95;
-      margin:12px 0 12px;
+      margin:12px 0;
+    }
+
+    h2{
+      line-height:1.25;
     }
 
     .grad{
@@ -87,6 +87,7 @@
       padding:22px;
       box-shadow:var(--shadow);
       margin:14px 0;
+      overflow:hidden;
     }
 
     .row{
@@ -103,6 +104,7 @@
       font-weight:750;
       font-size:1rem;
       cursor:pointer;
+      min-height:48px;
     }
 
     .btn.primary{
@@ -128,9 +130,7 @@
       cursor:not-allowed;
     }
 
-    input,
-    textarea,
-    select{
+    input,textarea,select{
       width:100%;
       background:#100f15;
       color:var(--text);
@@ -141,8 +141,7 @@
       outline:none;
     }
 
-    input:focus,
-    textarea:focus{
+    input:focus,textarea:focus{
       border-color:#7f5cb2;
       box-shadow:0 0 0 3px rgba(166,108,255,.12);
     }
@@ -197,6 +196,7 @@
       padding:14px;
       cursor:pointer;
       transition:.18s;
+      overflow-wrap:anywhere;
     }
 
     .option:hover{
@@ -230,9 +230,7 @@
       font-size:.8rem;
     }
 
-    .hidden{
-      display:none!important;
-    }
+    .hidden{display:none!important}
 
     .score-grid{
       display:grid;
@@ -279,6 +277,30 @@
       color:var(--muted);
     }
 
+    .compat-interpretation{
+      text-align:center;
+      margin:18px auto 22px;
+      max-width:620px;
+    }
+
+    .compat-label{
+      display:inline-block;
+      padding:7px 13px;
+      margin-bottom:9px;
+      border:1px solid #5b466f;
+      border-radius:999px;
+      background:#21182b;
+      color:#eadcff;
+      font-size:.9rem;
+      font-weight:800;
+    }
+
+    .compat-copy{
+      color:var(--muted);
+      line-height:1.6;
+      margin:0;
+    }
+
     .result-title{
       font-size:1.55rem;
       margin:8px 0;
@@ -290,6 +312,7 @@
       border-radius:18px;
       padding:16px;
       margin-top:14px;
+      overflow-wrap:anywhere;
     }
 
     .success{
@@ -323,6 +346,130 @@
       line-height:1.45;
     }
 
+    .vibe-summary{
+      color:#e8dfef;
+      line-height:1.68;
+      font-size:1rem;
+    }
+
+    .result-question{
+      margin-top:22px;
+    }
+
+    .result-question:first-child{
+      margin-top:10px;
+    }
+
+    .result-question-title{
+      color:#ddd0e8;
+      font-size:.92rem;
+      line-height:1.45;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    .reveal-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .answer-bubble{
+      min-width:0;
+      background:#121017;
+      border:1px solid #433650;
+      border-radius:18px;
+      padding:15px;
+      overflow-wrap:anywhere;
+    }
+
+    .answer-bubble strong{
+      display:block;
+      color:#eadcff;
+      margin-bottom:7px;
+    }
+
+    .answer-text{
+      line-height:1.55;
+      white-space:pre-wrap;
+    }
+
+    .sync-item,.difference-item,.starter-item{
+      background:#121017;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      margin-top:12px;
+      overflow-wrap:anywhere;
+    }
+
+    .sync-item strong,.difference-item strong{
+      display:block;
+      margin-bottom:7px;
+    }
+
+    .shared-answer{
+      margin-top:7px;
+      color:#eadcff;
+      line-height:1.5;
+    }
+
+    .difference-values{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin:10px 0;
+    }
+
+    .difference-value{
+      background:#19151f;
+      border-radius:12px;
+      padding:10px;
+      color:#eee6f6;
+      overflow-wrap:anywhere;
+      line-height:1.45;
+    }
+
+    .mutual-card{
+      border-color:#6c4b83;
+      background:
+        radial-gradient(circle at 100% 0%,rgba(255,95,162,.10),transparent 35%),
+        linear-gradient(180deg,rgba(166,108,255,.06),rgba(255,255,255,.01)),
+        var(--card);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 0 1px rgba(166,108,255,.08);
+    }
+
+    .mutual-explainer{
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.55;
+      margin:10px 0 4px;
+    }
+
+    .starter-list{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .starter-item{
+      margin-top:0;
+      line-height:1.55;
+    }
+
+    .reset-row{
+      display:flex;
+      justify-content:center;
+      margin-top:18px;
+    }
+
+    .reset-row .btn{
+      width:100%;
+      max-width:360px;
+    }
+
     .footer{
       text-align:center;
       color:#786e82;
@@ -331,7 +478,7 @@
     }
 
     @media (max-width:560px){
-      .score-grid{
+      .score-grid,.reveal-grid,.difference-values{
         grid-template-columns:1fr;
       }
 
@@ -342,6 +489,15 @@
 
       .card{
         padding:18px;
+        border-radius:21px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .bigscore .num{
+        font-size:3.8rem;
       }
     }
   </style>
@@ -363,7 +519,6 @@
 
     <div class="card">
       <span class="section-pill">Choose your mode</span>
-
       <h2 style="margin-bottom:8px">How do you want to play?</h2>
 
       <p class="sub" style="text-align:left;margin:0 0 18px">
@@ -383,7 +538,6 @@
 
       <div class="callout" style="margin-top:18px">
         <strong>How the blind reveal works</strong>
-
         <p class="tiny">
           Person 1 completes the test and gets a private partner code.
           Person 2 enters that code, takes the test without seeing Person 1’s
@@ -402,20 +556,11 @@
       ></textarea>
 
       <div class="row" style="margin-top:12px">
-        <button class="btn primary" onclick="startWithCode()">
-          Continue
-        </button>
-
-        <button class="btn ghost" onclick="hideJoin()">
-          Cancel
-        </button>
+        <button class="btn primary" onclick="startWithCode()">Continue</button>
+        <button class="btn ghost" onclick="hideJoin()">Cancel</button>
       </div>
 
-      <p
-        id="joinErr"
-        class="tiny"
-        style="color:var(--danger)"
-      ></p>
+      <p id="joinErr" class="tiny" style="color:var(--danger)"></p>
     </div>
   </section>
 
@@ -423,16 +568,11 @@
   <section id="intro" class="hidden">
     <div class="hero" style="padding-bottom:10px">
       <div class="eyebrow">Before we start</div>
-
-      <h1 style="font-size:2.7rem">
-        Your side of the vibe
-      </h1>
+      <h1 style="font-size:2.7rem">Your side of the vibe</h1>
     </div>
 
     <div class="card">
-      <label class="label">
-        Your nickname
-      </label>
+      <label class="label">Your nickname</label>
 
       <input
         id="nickname"
@@ -446,13 +586,8 @@
       </p>
 
       <div class="row" style="margin-top:16px">
-        <button class="btn primary" onclick="beginQuiz()">
-          Start the test
-        </button>
-
-        <button class="btn ghost" onclick="goHome()">
-          Back
-        </button>
+        <button class="btn primary" onclick="beginQuiz()">Start the test</button>
+        <button class="btn ghost" onclick="goHome()">Back</button>
       </div>
     </div>
   </section>
@@ -473,35 +608,17 @@
       <div id="questionWrap"></div>
 
       <div class="row" style="margin-top:18px">
-
-        <button
-          class="btn ghost"
-          id="backBtn"
-          onclick="prevQ()"
-        >
-          Back
-        </button>
-
-        <button
-          class="btn primary"
-          id="nextBtn"
-          onclick="nextQ()"
-        >
-          Next
-        </button>
-
+        <button class="btn ghost" id="backBtn" onclick="prevQ()">Back</button>
+        <button class="btn primary" id="nextBtn" onclick="nextQ()">Next</button>
       </div>
+
     </div>
   </section>
 
 
   <section id="firstDone" class="hidden">
-
     <div class="hero" style="padding-bottom:10px">
-
-      <div class="eyebrow">
-        Halfway there
-      </div>
+      <div class="eyebrow">Halfway there</div>
 
       <h1 style="font-size:2.8rem">
         Your answers are locked 🔒
@@ -511,55 +628,23 @@
         Send the code below to your friend. They can’t see your answers before
         finishing their own test.
       </p>
-
     </div>
 
     <div class="card">
+      <label class="label">Partner code</label>
 
-      <label class="label">
-        Partner code
-      </label>
-
-      <div
-        class="code"
-        id="generatedCode"
-      ></div>
+      <div class="code" id="generatedCode"></div>
 
       <div class="row" style="margin-top:14px">
-
-        <button
-          class="btn primary"
-          onclick="copyCode()"
-        >
-          Copy code
-        </button>
-
-        <button
-          class="btn secondary"
-          onclick="resetAll()"
-        >
-          Start over
-        </button>
-
+        <button class="btn primary" onclick="copyCode()">Copy code</button>
+        <button class="btn secondary" onclick="resetAll()">Start over</button>
       </div>
 
-      <div
-        id="copyMsg"
-        class="tiny"
-        style="margin-top:8px"
-      ></div>
+      <div id="copyMsg" class="tiny" style="margin-top:8px"></div>
 
       <div class="callout">
-
-        <strong>
-          Send this message:
-        </strong>
-
-        <p
-          class="tiny"
-          id="shareText"
-        ></p>
-
+        <strong>Send this message:</strong>
+        <p class="tiny" id="shareText"></p>
       </div>
     </div>
   </section>
@@ -568,105 +653,90 @@
   <section id="results" class="hidden">
 
     <div class="hero" style="padding-bottom:10px">
-
-      <div class="eyebrow">
-        Shared results
-      </div>
-
-      <h1 style="font-size:2.8rem">
-        The reveal 👀
-      </h1>
-
-      <p
-        class="sub"
-        id="pairNames"
-      ></p>
-
+      <div class="eyebrow">Shared results</div>
+      <h1 style="font-size:2.8rem">The reveal 👀</h1>
+      <p class="sub" id="pairNames"></p>
     </div>
 
-
+    <!-- 1–4: overall + interpretation + five category scores -->
     <div class="card">
-
       <div class="bigscore">
-
-        <div
-          class="num grad"
-          id="overallScore"
-        >
-          0%
-        </div>
-
-        <small>
-          Overall Compatibility
-        </small>
-
+        <div class="num grad" id="overallScore">0%</div>
+        <small>Overall Compatibility</small>
       </div>
 
-      <div
-        class="score-grid"
-        id="scoreGrid"
-      ></div>
+      <div class="compat-interpretation">
+        <div class="compat-label" id="compatLabel"></div>
+        <p class="compat-copy" id="compatCopy"></p>
+      </div>
 
+      <div class="score-grid" id="scoreGrid"></div>
     </div>
 
-
+    <!-- 5 -->
     <div class="card">
+      <span class="section-pill">Your combined vibe</span>
+      <h2>What Your Vibe Looks Like 👀</h2>
+      <div id="vibeSummary" class="vibe-summary"></div>
+    </div>
 
-      <span class="section-pill">
-        Affection styles
-      </span>
-
-      <h2>
-        Your strongest styles
-      </h2>
-
+    <!-- 6 -->
+    <div class="card">
+      <span class="section-pill">Affection styles</span>
+      <h2>Your strongest styles</h2>
       <div id="styles"></div>
-
     </div>
 
-
+    <!-- 7 -->
     <div class="card">
-
-      <span class="section-pill">
-        Mutual reveal
-      </span>
-
-      <h2
-        id="revealTitle"
-        class="result-title"
-      ></h2>
-
-      <div
-        id="revealBody"
-        class="callout"
-      ></div>
-
+      <span class="section-pill">Blind reveal</span>
+      <h2>Your Blind Reveal 🔒</h2>
+      <p class="tiny">
+        These written answers stay hidden until both people finish the test.
+      </p>
+      <div id="blindReveal"></div>
     </div>
 
-
+    <!-- 8 -->
     <div class="card">
-
-      <span class="section-pill">
-        Wild cards
-      </span>
-
-      <h2>
-        Where your answers matched
-      </h2>
-
+      <span class="section-pill">Wild cards</span>
+      <h2>Where You’re in Sync</h2>
       <div id="wildSummary"></div>
+    </div>
 
-      <div class="row" style="margin-top:18px">
+    <!-- 9 -->
+    <div class="card">
+      <span class="section-pill">Conversation starters</span>
+      <h2>Where You Differ</h2>
+      <p class="tiny">
+        Different answers aren’t necessarily incompatibilities—they’re conversation starters.
+      </p>
+      <div id="differenceSummary"></div>
+    </div>
 
-        <button
-          class="btn secondary"
-          onclick="resetAll()"
-        >
-          Take it again
-        </button>
+    <!-- 10 -->
+    <div class="card mutual-card">
+      <span class="section-pill">Mutual reveal</span>
 
-      </div>
+      <p class="mutual-explainer">
+        Compatibility and attraction aren’t the same thing. This reveal is
+        based only on the protected Mutual Attraction Question.
+      </p>
 
+      <h2 id="revealTitle" class="result-title"></h2>
+      <div id="revealBody" class="callout"></div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card">
+      <span class="section-pill">Keep talking</span>
+      <h2>Now What? 👀</h2>
+      <div id="conversationStarters" class="starter-list"></div>
+    </div>
+
+    <!-- 12 -->
+    <div class="reset-row">
+      <button class="btn secondary" onclick="resetAll()">Take It Again</button>
     </div>
 
   </section>
@@ -1066,9 +1136,7 @@ function enc(obj){
 
 
 function dec(str){
-
   try{
-
     const pad =
       str +
       "===".slice(
@@ -1084,16 +1152,22 @@ function dec(str){
     );
 
   }catch(e){
-
     return null;
-
   }
+}
 
+
+function safeText(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
 function show(id){
-
   [
     "home",
     "intro",
@@ -1101,18 +1175,14 @@ function show(id){
     "firstDone",
     "results"
   ].forEach(function(sectionId){
-
-    const section =
-      document.getElementById(sectionId);
+    const section = document.getElementById(sectionId);
 
     if(section){
       section.classList.add("hidden");
     }
-
   });
 
-  const target =
-    document.getElementById(id);
+  const target = document.getElementById(id);
 
   if(target){
     target.classList.remove("hidden");
@@ -1122,7 +1192,6 @@ function show(id){
     top:0,
     behavior:"smooth"
   });
-
 }
 
 
@@ -1132,35 +1201,28 @@ function goHome(){
 
 
 function showJoin(){
-
-  const joinBox =
-    document.getElementById("joinBox");
+  const joinBox = document.getElementById("joinBox");
 
   joinBox.classList.remove("hidden");
-
   document.getElementById("joinErr").textContent = "";
 
   joinBox.scrollIntoView({
     behavior:"smooth"
   });
-
 }
 
 
 function hideJoin(){
-
   document
     .getElementById("joinBox")
     .classList
     .add("hidden");
 
   document.getElementById("joinErr").textContent = "";
-
 }
 
 
 function startFresh(){
-
   state = {
     mode:"first",
     partner:null,
@@ -1173,12 +1235,10 @@ function startFresh(){
   document.getElementById("joinErr").textContent = "";
 
   show("intro");
-
 }
 
 
 function startWithCode(){
-
   const code =
     document
       .getElementById("partnerCode")
@@ -1194,12 +1254,10 @@ function startWithCode(){
     !Array.isArray(data.answers) ||
     data.answers.length !== QUESTIONS.length
   ){
-
     document.getElementById("joinErr").textContent =
       "That code doesn't look valid. Copy it again and make sure nothing is missing.";
 
     return;
-
   }
 
   state = {
@@ -1214,12 +1272,10 @@ function startWithCode(){
   document.getElementById("nickname").value = "";
 
   show("intro");
-
 }
 
 
 function beginQuiz(){
-
   const nick =
     document
       .getElementById("nickname")
@@ -1227,10 +1283,8 @@ function beginQuiz(){
       .trim();
 
   if(!nick){
-
     alert("Add a nickname first.");
     return;
-
   }
 
   state.me = {
@@ -1241,18 +1295,13 @@ function beginQuiz(){
   state.answers = [];
 
   show("quiz");
-
   renderQ();
-
 }
 
 
 function renderQ(){
-
   const q = QUESTIONS[state.idx];
-
-  const wrap =
-    document.getElementById("questionWrap");
+  const wrap = document.getElementById("questionWrap");
 
   document.getElementById("sectionName").textContent =
     q.section;
@@ -1279,16 +1328,12 @@ function renderQ(){
     `<span class="section-pill">${q.section}</span>` +
     `<div class="qtitle">${q.text}</div>`;
 
-  const val =
-    state.answers[state.idx];
-
+  const val = state.answers[state.idx];
 
   if(q.type === "choice"){
-
     html +=
       `<div class="options">` +
       q.opts.map(function(o,i){
-
         return `
           <div
             class="option ${val === i ? "selected" : ""}"
@@ -1297,26 +1342,18 @@ function renderQ(){
             <div class="badge">
               ${String.fromCharCode(65 + i)}
             </div>
-
-            <div>
-              ${o}
-            </div>
+            <div>${o}</div>
           </div>
         `;
-
       }).join("") +
       `</div>`;
-
   }
 
-
   else if(q.type === "scale"){
-
     html +=
       `<div class="options">` +
       [1,2,3,4,5,6,7,8,9,10]
         .map(function(i){
-
           let label = "";
 
           if(i === 1){
@@ -1332,25 +1369,16 @@ function renderQ(){
               class="option ${val === i ? "selected" : ""}"
               onclick="pick(${i})"
             >
-              <div class="badge">
-                ${i}
-              </div>
-
-              <div>
-                ${label}
-              </div>
+              <div class="badge">${i}</div>
+              <div>${label}</div>
             </div>
           `;
-
         })
         .join("") +
       `</div>`;
-
   }
 
-
   else{
-
     html += `
       <textarea
         id="textAnswer"
@@ -1359,32 +1387,22 @@ function renderQ(){
         placeholder="Your answer…"
       >${val || ""}</textarea>
     `;
-
   }
 
-
   wrap.innerHTML = html;
-
 }
 
 
 function pick(v){
-
   state.answers[state.idx] = v;
-
   renderQ();
-
 }
 
 
 function nextQ(){
-
-  const q =
-    QUESTIONS[state.idx];
-
+  const q = QUESTIONS[state.idx];
 
   if(q.type === "text"){
-
     const textArea =
       document.getElementById("textAnswer");
 
@@ -1392,87 +1410,58 @@ function nextQ(){
       (textArea.value || "").trim();
 
     if(!v){
-
       alert("Answer this one before continuing.");
       return;
-
     }
 
     state.answers[state.idx] = v;
-
   }
-
 
   if(
     state.answers[state.idx] === undefined ||
     state.answers[state.idx] === null ||
     state.answers[state.idx] === ""
   ){
-
     alert("Choose an answer before continuing.");
     return;
-
   }
-
 
   if(state.idx < QUESTIONS.length - 1){
-
     state.idx++;
-
     renderQ();
-
-  }
-
-  else{
-
+  }else{
     finishQuiz();
-
   }
-
 }
 
 
 function prevQ(){
-
-  const q =
-    QUESTIONS[state.idx];
-
+  const q = QUESTIONS[state.idx];
 
   if(q.type === "text"){
-
     const textArea =
       document.getElementById("textAnswer");
 
     state.answers[state.idx] =
       (textArea.value || "").trim();
-
   }
-
 
   if(state.idx > 0){
-
     state.idx--;
-
     renderQ();
-
   }
-
 }
 
 
 function finishQuiz(){
-
   if(
     !state.me ||
     !state.me.nickname ||
     state.answers.length !== QUESTIONS.length
   ){
-
     alert("Please complete all 27 questions before finishing.");
     return;
-
   }
-
 
   const payload = {
     v:1,
@@ -1480,11 +1469,8 @@ function finishQuiz(){
     answers:state.answers.slice()
   };
 
-
   if(state.mode === "first"){
-
-    const code =
-      enc(payload);
+    const code = enc(payload);
 
     document.getElementById("generatedCode").textContent =
       code;
@@ -1497,48 +1483,36 @@ function finishQuiz(){
     state.me = payload;
 
     show("firstDone");
-
   }
 
   else{
-
     state.me = payload;
-
     computeResults();
-
   }
-
 }
 
 
 async function copyCode(){
-
   const txt =
     document
       .getElementById("generatedCode")
       .textContent;
 
   try{
-
     await navigator.clipboard.writeText(txt);
 
     document.getElementById("copyMsg").textContent =
       "Copied ✅";
-
   }
 
   catch(e){
-
     document.getElementById("copyMsg").textContent =
       "Press and hold the code to copy it.";
-
   }
-
 }
 
 
 function affectionProfile(p){
-
   const counts = {
     communication:0,
     quality:0,
@@ -1547,46 +1521,22 @@ function affectionProfile(p){
     affirmation:0
   };
 
-
   for(let i = 0; i < 9; i++){
+    const q = QUESTIONS[i];
+    const a = p.answers[i];
 
-    const q =
-      QUESTIONS[i];
-
-    const a =
-      p.answers[i];
-
-    if(
-      q.tags &&
-      q.tags[a]
-    ){
-
+    if(q.tags && q.tags[a]){
       counts[q.tags[a]]++;
-
     }
-
   }
 
-
   const names = {
-
-    communication:
-      "Communication & Emotional Intimacy",
-
-    quality:
-      "Quality Time",
-
-    physical:
-      "Physical Affection & Chemistry",
-
-    care:
-      "Acts of Care & Reliability",
-
-    affirmation:
-      "Words of Affirmation & Appreciation"
-
+    communication:"Communication & Emotional Intimacy",
+    quality:"Quality Time",
+    physical:"Physical Affection & Chemistry",
+    care:"Acts of Care & Reliability",
+    affirmation:"Words of Affirmation & Appreciation"
   };
-
 
   const sorted =
     Object
@@ -1595,24 +1545,15 @@ function affectionProfile(p){
         return b[1] - a[1];
       });
 
-
   return {
-
-    primary:
-      names[sorted[0][0]],
-
-    secondary:
-      names[sorted[1][0]],
-
+    primary:names[sorted[0][0]],
+    secondary:names[sorted[1][0]],
     counts:counts
-
   };
-
 }
 
 
 function similarityChoice(a,b,maxOpt){
-
   if(a === b){
     return 100;
   }
@@ -1626,18 +1567,177 @@ function similarityChoice(a,b,maxOpt){
         Math.max(1,maxOpt - 1)
       )
   );
+}
 
+
+function compatibilityInterpretation(overall){
+  if(overall >= 90){
+    return {
+      label:"Exceptional Alignment",
+      copy:"You two show unusually strong alignment across communication, emotional connection, quality time, chemistry preferences, and relationship expectations. Compatibility doesn’t automatically mean romantic interest—the Mutual Reveal is evaluated separately."
+    };
+  }
+
+  if(overall >= 80){
+    return {
+      label:"Strong Alignment",
+      copy:"You share a lot of common ground in how you connect, communicate, spend time, and think about relationships. That alignment describes compatibility, not whether either person is romantically interested."
+    };
+  }
+
+  if(overall >= 70){
+    return {
+      label:"Very Compatible",
+      copy:"Your answers suggest plenty of shared preferences with a few meaningful differences that can make the connection more interesting. Romantic attraction is separate and is only addressed in the Mutual Reveal."
+    };
+  }
+
+  if(overall >= 60){
+    return {
+      label:"Promising Compatibility",
+      copy:"There’s a solid base of shared preferences alongside some areas where you approach connection differently. Those differences are conversation material—not evidence of attraction or a lack of it."
+    };
+  }
+
+  if(overall >= 50){
+    return {
+      label:"Mixed but Interesting",
+      copy:"You overlap in some meaningful ways and differ in others, which can create plenty to talk about. This score measures compatibility patterns only; it does not measure romantic interest."
+    };
+  }
+
+  return {
+    label:"Different Wavelengths",
+    copy:"Your answers reflect noticeably different preferences in several areas, which may simply mean you experience connection in different ways. Compatibility and romantic attraction are separate questions."
+  };
+}
+
+
+function buildDifferenceCandidates(A,B){
+  const candidates = [];
+
+  const scaleMeta = [
+    {
+      i:16,
+      label:"Physical attraction",
+      explain:"You place different levels of importance on physical attraction, which may shape how quickly chemistry registers for each of you."
+    },
+    {
+      i:17,
+      label:"Emotional connection",
+      explain:"You weight emotional connection differently, so closeness may build at a different pace for each of you."
+    },
+    {
+      i:18,
+      label:"Friendship before dating",
+      explain:"You may approach romantic relationships differently—one of you places more importance on building friendship first."
+    },
+    {
+      i:19,
+      label:"Sexual chemistry",
+      explain:"Sexual chemistry carries different weight for each of you, which can be useful to understand when talking about connection."
+    },
+    {
+      i:20,
+      label:"Communication",
+      explain:"Communication matters to both of you in different degrees, so it may help to define what good communication looks like to each person."
+    }
+  ];
+
+  scaleMeta.forEach(function(item){
+    const gap =
+      Math.abs(
+        A.answers[item.i] -
+        B.answers[item.i]
+      );
+
+    if(gap > 0){
+      candidates.push({
+        priority:100 + gap,
+        index:item.i,
+        label:item.label,
+        left:A.answers[item.i] + "/10",
+        right:B.answers[item.i] + "/10",
+        explain:item.explain
+      });
+    }
+  });
+
+  const choiceMeta = [
+    {
+      i:7,
+      label:"Handling disagreements",
+      priority:75,
+      explain:"You tend to handle disagreements differently, so timing and reassurance may matter when something feels off."
+    },
+    {
+      i:9,
+      label:"Flirting style",
+      priority:74,
+      explain:"Your preferred flirting styles differ, which may mean you notice or express playful interest in different ways."
+    },
+    {
+      i:12,
+      label:"Friendship becoming attraction",
+      priority:82,
+      explain:"You see the friendship-to-attraction path differently, which can shape how you interpret a close connection."
+    },
+    {
+      i:13,
+      label:"When friends have chemistry",
+      priority:86,
+      explain:"You have different instincts about what friends should do when chemistry is present, which is a natural topic to unpack."
+    },
+    {
+      i:14,
+      label:"Developing feelings for a friend",
+      priority:84,
+      explain:"You would handle developing feelings for a friend differently, so openness and timing may look different for each of you."
+    },
+    {
+      i:15,
+      label:"Biggest concern about dating a friend",
+      priority:88,
+      explain:"Your biggest concerns about dating a friend aren’t the same, which highlights different things each of you may want to protect."
+    },
+    {
+      i:24,
+      label:"Hiding attraction",
+      priority:78,
+      explain:"You answered the hidden-attraction question differently, suggesting you may manage uncertainty about attraction in different ways."
+    },
+    {
+      i:25,
+      label:"Dating a current friend",
+      priority:90,
+      explain:"You have different comfort levels around dating someone who is already a friend, which is worth understanding without assuming either person’s attraction."
+    }
+  ];
+
+  choiceMeta.forEach(function(item){
+    if(A.answers[item.i] !== B.answers[item.i]){
+      candidates.push({
+        priority:item.priority,
+        index:item.i,
+        label:item.label,
+        left:QUESTIONS[item.i].opts[A.answers[item.i]],
+        right:QUESTIONS[item.i].opts[B.answers[item.i]],
+        explain:item.explain
+      });
+    }
+  });
+
+  return candidates
+    .sort(function(a,b){
+      return b.priority - a.priority;
+    })
+    .slice(0,5);
 }
 
 
 function computeResults(){
-
-  const A =
-    state.partner;
-
-  const B =
-    state.me;
-
+  const A = state.partner;
+  const B = state.me;
 
   if(
     !A ||
@@ -1647,37 +1747,40 @@ function computeResults(){
     A.answers.length !== QUESTIONS.length ||
     B.answers.length !== QUESTIONS.length
   ){
-
     alert("The compatibility results could not be generated because one set of answers is incomplete.");
-
     resetAll();
-
     return;
-
   }
 
 
+  /*
+    IMPORTANT PRIVACY RULE
+
+    Q27 is QUESTIONS[26].
+
+    It is intentionally NOT used in:
+    - compatibility category scoring
+    - overall compatibility
+    - affection styles
+    - blind reveal
+    - Where You're in Sync
+    - Where You Differ
+    - vibe summary
+    - conversation starters
+
+    Q27 is read only inside the protected Mutual Reveal block below.
+  */
+
   const cats = {
-
     Communication:[],
-
     "Emotional Connection":[],
-
     "Quality Time":[],
-
     Chemistry:[],
-
     "Relationship Expectations":[]
-
   };
 
 
-  /*
-    Communication
-  */
-
   [0,1,2,3,4,5,6,7].forEach(function(i){
-
     cats["Communication"].push(
       similarityChoice(
         A.answers[i],
@@ -1685,18 +1788,11 @@ function computeResults(){
         5
       )
     );
-
   });
 
 
-  /*
-    Emotional Connection
-  */
-
   [5,6,7,17,20].forEach(function(i){
-
     if(i >= 16){
-
       cats["Emotional Connection"].push(
         100 -
         Math.abs(
@@ -1704,11 +1800,7 @@ function computeResults(){
           B.answers[i]
         ) * 11.1
       );
-
-    }
-
-    else{
-
+    }else{
       cats["Emotional Connection"].push(
         similarityChoice(
           A.answers[i],
@@ -1716,18 +1808,11 @@ function computeResults(){
           5
         )
       );
-
     }
-
   });
 
 
-  /*
-    Quality Time
-  */
-
   [0,1,4,5,8].forEach(function(i){
-
     cats["Quality Time"].push(
       similarityChoice(
         A.answers[i],
@@ -1735,18 +1820,11 @@ function computeResults(){
         5
       )
     );
-
   });
 
 
-  /*
-    Chemistry
-  */
-
   [8,9,10,11,16,19].forEach(function(i){
-
     if(i >= 16){
-
       cats["Chemistry"].push(
         100 -
         Math.abs(
@@ -1754,11 +1832,7 @@ function computeResults(){
           B.answers[i]
         ) * 11.1
       );
-
-    }
-
-    else{
-
+    }else{
       cats["Chemistry"].push(
         similarityChoice(
           A.answers[i],
@@ -1766,23 +1840,18 @@ function computeResults(){
           5
         )
       );
-
     }
-
   });
 
 
   /*
-    Relationship Expectations
+    Q27 / index 26 is deliberately excluded.
   */
-
-  [12,13,14,15,18,24,25,26].forEach(function(i){
-
+  [12,13,14,15,18,24,25].forEach(function(i){
     if(
       i >= 16 &&
       i <= 20
     ){
-
       cats["Relationship Expectations"].push(
         100 -
         Math.abs(
@@ -1790,11 +1859,7 @@ function computeResults(){
           B.answers[i]
         ) * 11.1
       );
-
-    }
-
-    else{
-
+    }else{
       const maxOptions =
         QUESTIONS[i].opts
           ? QUESTIONS[i].opts.length
@@ -1807,22 +1872,15 @@ function computeResults(){
           maxOptions
         )
       );
-
     }
-
   });
 
 
   const scores = {};
 
-
   Object.entries(cats).forEach(function(entry){
-
-    const k =
-      entry[0];
-
-    const v =
-      entry[1];
+    const k = entry[0];
+    const v = entry[1];
 
     const average =
       v.reduce(function(x,y){
@@ -1837,13 +1895,11 @@ function computeResults(){
           Math.round(average)
         )
       );
-
   });
 
 
   const scoreValues =
     Object.values(scores);
-
 
   const overall =
     Math.round(
@@ -1857,28 +1913,38 @@ function computeResults(){
   document.getElementById("overallScore").textContent =
     overall + "%";
 
-
   document.getElementById("pairNames").textContent =
     `${A.nickname} + ${B.nickname}`;
 
+
+  /*
+    Compatibility interpretation
+  */
+
+  const interpretation =
+    compatibilityInterpretation(overall);
+
+  document.getElementById("compatLabel").textContent =
+    interpretation.label;
+
+  document.getElementById("compatCopy").textContent =
+    interpretation.copy;
+
+
+  /*
+    Five compatibility category scores
+  */
 
   document.getElementById("scoreGrid").innerHTML =
     Object
       .entries(scores)
       .map(function(entry){
-
-        const k =
-          entry[0];
-
-        const v =
-          entry[1];
+        const k = entry[0];
+        const v = entry[1];
 
         return `
           <div class="score">
-
-            <div>
-              ${k}
-            </div>
+            <div>${safeText(k)}</div>
 
             <strong>
               ${v}%
@@ -1887,10 +1953,8 @@ function computeResults(){
             <div class="bar">
               <div style="width:${v}%"></div>
             </div>
-
           </div>
         `;
-
       })
       .join("");
 
@@ -1899,71 +1963,270 @@ function computeResults(){
     Affection Styles
   */
 
-  const pa =
-    affectionProfile(A);
-
-  const pb =
-    affectionProfile(B);
-
+  const pa = affectionProfile(A);
+  const pb = affectionProfile(B);
 
   document.getElementById("styles").innerHTML = `
-
     <div class="callout">
-
-      <strong>
-        ${A.nickname}
-      </strong>
-
+      <strong>${safeText(A.nickname)}</strong>
       <br>
-
-      ${pa.primary}
-
+      ${safeText(pa.primary)}
       <br>
-
       <span class="tiny">
-        Secondary: ${pa.secondary}
+        Secondary: ${safeText(pa.secondary)}
       </span>
-
     </div>
 
-
     <div class="callout">
-
-      <strong>
-        ${B.nickname}
-      </strong>
-
+      <strong>${safeText(B.nickname)}</strong>
       <br>
-
-      ${pb.primary}
-
+      ${safeText(pb.primary)}
       <br>
-
       <span class="tiny">
-        Secondary: ${pb.secondary}
+        Secondary: ${safeText(pb.secondary)}
       </span>
-
     </div>
-
   `;
 
 
   /*
-    Protected Question 27 Reveal
+    Your Blind Reveal
+    Q22, Q23, Q24 = indices 21,22,23.
+  */
+
+  const blindIndices = [21,22,23];
+
+  document.getElementById("blindReveal").innerHTML =
+    blindIndices
+      .map(function(i){
+        return `
+          <div class="result-question">
+            <div class="result-question-title">
+              ${safeText(QUESTIONS[i].text)}
+            </div>
+
+            <div class="reveal-grid">
+              <div class="answer-bubble">
+                <strong>${safeText(A.nickname)}</strong>
+                <div class="answer-text">${safeText(A.answers[i])}</div>
+              </div>
+
+              <div class="answer-bubble">
+                <strong>${safeText(B.nickname)}</strong>
+                <div class="answer-text">${safeText(B.answers[i])}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+
+
+  /*
+    Where You're in Sync
+  */
+
+  const wild = [];
+
+  const scaleLabels = [
+    "Physical attraction",
+    "Emotional connection",
+    "Friendship before dating",
+    "Sexual chemistry",
+    "Communication"
+  ];
+
+
+  for(let i = 16; i <= 20; i++){
+    const d =
+      Math.abs(
+        A.answers[i] -
+        B.answers[i]
+      );
+
+    if(d <= 1){
+      wild.push(`
+        <div class="sync-item">
+          <strong>${safeText(scaleLabels[i - 16])}</strong>
+
+          <div>
+            ${safeText(A.nickname)}: ${A.answers[i]}/10
+            •
+            ${safeText(B.nickname)}: ${B.answers[i]}/10
+          </div>
+
+          <div class="tiny" style="margin-top:6px">
+            Very closely aligned.
+          </div>
+        </div>
+      `);
+    }
+  }
+
+
+  /*
+    Matching multiple-choice answers.
+
+    This loop stops BEFORE index 26, so Q27 can never
+    appear in this section.
+  */
+
+  for(let i = 0; i < 26; i++){
+    const q = QUESTIONS[i];
+
+    if(
+      q.type === "choice" &&
+      A.answers[i] === B.answers[i]
+    ){
+      const shared =
+        q.opts[A.answers[i]];
+
+      wild.push(`
+        <div class="sync-item">
+          <strong>${safeText(q.text)}</strong>
+
+          <div class="tiny">
+            Shared answer:
+          </div>
+
+          <div class="shared-answer">
+            “${safeText(shared)}”
+          </div>
+        </div>
+      `);
+    }
+  }
+
+
+  document.getElementById("wildSummary").innerHTML =
+    wild.length
+      ? wild.join("")
+      : `
+        <div class="callout warn">
+          You didn’t have many close matches here, which may make for a more
+          interesting conversation than a perfect match would.
+        </div>
+      `;
+
+
+  /*
+    Where You Differ
+
+    buildDifferenceCandidates() has no Q27 candidate.
+  */
+
+  const differences =
+    buildDifferenceCandidates(A,B);
+
+  document.getElementById("differenceSummary").innerHTML =
+    differences.length
+      ? differences.map(function(item){
+          return `
+            <div class="difference-item">
+              <strong>${safeText(item.label)}</strong>
+
+              <div class="difference-values">
+                <div class="difference-value">
+                  <b>${safeText(A.nickname)}:</b>
+                  <br>
+                  ${safeText(item.left)}
+                </div>
+
+                <div class="difference-value">
+                  <b>${safeText(B.nickname)}:</b>
+                  <br>
+                  ${safeText(item.right)}
+                </div>
+              </div>
+
+              <div class="tiny">
+                ${safeText(item.explain)}
+              </div>
+            </div>
+          `;
+        }).join("")
+      : `
+        <div class="callout">
+          Your answers are unusually close across the main comparison points,
+          so there aren’t many large differences to highlight.
+        </div>
+      `;
+
+
+  /*
+    What Your Vibe Looks Like
+
+    This summary is based only on scores, affection profiles,
+    scale alignments, and non-Q27 differences.
+  */
+
+  const rankedScores =
+    Object
+      .entries(scores)
+      .sort(function(a,b){
+        return b[1] - a[1];
+      });
+
+  const strongest =
+    rankedScores[0];
+
+  const weakest =
+    rankedScores[rankedScores.length - 1];
+
+  const alignedScales = [];
+
+  for(let i = 16; i <= 20; i++){
+    if(
+      Math.abs(
+        A.answers[i] -
+        B.answers[i]
+      ) <= 1
+    ){
+      alignedScales.push(
+        scaleLabels[i - 16].toLowerCase()
+      );
+    }
+  }
+
+  let summary =
+    `Your strongest shared area is ${strongest[0]} at ${strongest[1]}%, while ${weakest[0]} is the area where your answers leave the most room for different perspectives. `;
+
+  if(pa.primary === pb.primary){
+    summary +=
+      `You also share the same leading affection style—${pa.primary}—which suggests a similar instinct for how connection feels most natural. `;
+  }else{
+    summary +=
+      `${A.nickname} leans most toward ${pa.primary}, while ${B.nickname} leans most toward ${pb.primary}, giving you two different but potentially complementary ways of expressing connection. `;
+  }
+
+  if(alignedScales.length){
+    summary +=
+      `You’re especially close on ${alignedScales.slice(0,2).join(" and ")}. `;
+  }
+
+  if(differences.length){
+    summary +=
+      `One useful conversation area is ${differences[0].label.toLowerCase()}, where your answers show a noticeable difference in perspective. `;
+  }
+
+  summary +=
+    "These patterns describe compatibility and connection preferences; they do not establish romantic attraction.";
+
+  document.getElementById("vibeSummary").textContent =
+    summary;
+
+
+  /*
+    PROTECTED MUTUAL REVEAL — Q27 ONLY
 
     Answer index 0 means:
     "I'd rather keep things completely platonic."
 
-    If EITHER person selects it, the exact response
-    of the other person must remain private.
+    This is the ONLY results component that reads index 26.
   */
 
-  const qa =
-    A.answers[26];
-
-  const qb =
-    B.answers[26];
-
+  const qa = A.answers[26];
+  const qb = B.answers[26];
 
   const title =
     document.getElementById("revealTitle");
@@ -1976,20 +2239,17 @@ function computeResults(){
     qa === 0 ||
     qb === 0
   ){
-
     title.textContent =
       "Friendship Boundary 🔒";
 
     body.className =
       "callout danger";
 
-    body.innerHTML =
-      `One person’s answer indicates that keeping things platonic is important. The other person’s exact answer stays private.`;
-
+    body.textContent =
+      "One person’s answer indicates that keeping things platonic is important. The other person’s exact answer stays private.";
   }
 
   else{
-
     const level =
       Math.min(
         qa,
@@ -1999,160 +2259,168 @@ function computeResults(){
     body.className =
       "callout success";
 
-
     if(level >= 3){
-
       title.textContent =
         "Okay… y’all might need to stop calling each other “friends.” 😂";
 
-      body.innerHTML =
-        `Both answers show clear romantic openness. What happens with that information is entirely up to you two.`;
-
+      body.textContent =
+        "Both answers show clear romantic openness. What happens with that information is entirely up to you two.";
     }
 
     else if(level >= 2){
-
       title.textContent =
         "There’s something worth talking about 👀";
 
-      body.innerHTML =
-        `Both answers show openness to exploring something beyond friendship.`;
-
+      body.textContent =
+        "Both answers show openness to exploring something beyond friendship.";
     }
 
     else{
-
       title.textContent =
         "Mutual curiosity detected 👀";
 
-      body.innerHTML =
-        `Neither answer shut the door. You both left room for the possibility.`;
-
+      body.textContent =
+        "Neither answer shut the door. You both left room for the possibility.";
     }
-
   }
 
 
   /*
-    Wild-card Matches
+    Now What? Conversation Starters
+
+    No Q27 data is used here.
   */
 
-  const wild = [];
+  const starters = [];
 
 
-  const labels = [
-    "Physical attraction",
-    "Emotional connection",
-    "Friendship before dating",
-    "Sexual chemistry",
-    "Communication"
-  ];
-
-
-  for(
-    let i = 16;
-    i <= 20;
-    i++
+  if(
+    Math.abs(
+      A.answers[20] -
+      B.answers[20]
+    ) <= 1 &&
+    Math.min(
+      A.answers[20],
+      B.answers[20]
+    ) >= 7
   ){
-
-    const d =
-      Math.abs(
-        A.answers[i] -
-        B.answers[i]
-      );
-
-
-    if(d <= 1){
-
-      wild.push(`
-
-        <div class="callout">
-
-          <strong>
-            ${labels[i - 16]}:
-          </strong>
-
-          ${A.answers[i]}/10
-          vs
-          ${B.answers[i]}/10
-          — very closely aligned.
-
-        </div>
-
-      `);
-
-    }
-
+    starters.push(
+      "You both rated communication highly. What does great communication actually look like to each of you?"
+    );
   }
 
 
   if(
-    A.answers[24] ===
-    B.answers[24]
+    Math.abs(
+      A.answers[18] -
+      B.answers[18]
+    ) >= 3
   ){
+    starters.push(
+      "You had different answers about friendship before dating. What makes friendship important—or unimportant—before a relationship?"
+    );
+  }
 
-    wild.push(`
-
-      <div class="callout">
-
-        <strong>
-          Hidden attraction:
-        </strong>
-
-        You gave the same answer.
-
-      </div>
-
-    `);
-
+  else if(
+    Math.min(
+      A.answers[18],
+      B.answers[18]
+    ) >= 7
+  ){
+    starters.push(
+      "Friendship before dating matters to both of you. What makes a friendship feel strong enough to build something deeper on?"
+    );
   }
 
 
   if(
-    A.answers[25] ===
-    B.answers[25]
+    Math.abs(
+      A.answers[19] -
+      B.answers[19]
+    ) <= 1 &&
+    Math.min(
+      A.answers[19],
+      B.answers[19]
+    ) >= 7
   ){
-
-    wild.push(`
-
-      <div class="callout">
-
-        <strong>
-          Dating a current friend:
-        </strong>
-
-        You gave the same answer.
-
-      </div>
-
-    `);
-
+    starters.push(
+      "You both place a high value on chemistry. What creates chemistry for each of you?"
+    );
   }
 
 
-  document.getElementById("wildSummary").innerHTML =
-    wild.length
-      ? wild.join("")
-      : `
-        <div class="callout warn">
-          You didn’t have many exact matches here, which may make for a more
-          interesting conversation than a perfect score would.
-        </div>
-      `;
+  if(
+    A.answers[7] !==
+    B.answers[7]
+  ){
+    starters.push(
+      "You handle disagreements differently. What helps each of you feel heard when there’s tension?"
+    );
+  }
+
+
+  if(
+    A.answers[9] !==
+    B.answers[9]
+  ){
+    starters.push(
+      "Your preferred flirting styles are different. What kind of flirting do you actually notice and enjoy?"
+    );
+  }
+
+
+  if(
+    pa.primary ===
+    pb.primary
+  ){
+    starters.push(
+      `You share ${pa.primary} as your strongest affection style. What makes that style feel genuine instead of routine?`
+    );
+  }
+
+  else{
+    starters.push(
+      "Your strongest affection styles differ. What makes each of you feel most appreciated in real life?"
+    );
+  }
+
+
+  if(starters.length < 3){
+    starters.push(
+      "What answer from the Blind Reveal surprised you most, and why?"
+    );
+  }
+
+
+  if(starters.length < 3){
+    starters.push(
+      "Which result feels most accurate to how you actually connect?"
+    );
+  }
+
+
+  document.getElementById("conversationStarters").innerHTML =
+    starters
+      .slice(0,3)
+      .map(function(text){
+        return `
+          <div class="starter-item">
+            ${safeText(text)}
+          </div>
+        `;
+      })
+      .join("");
 
 
   /*
-    Results are generated.
-    Transition to results screen.
+    Results are fully generated.
   */
 
   show("results");
-
 }
 
 
 function resetAll(){
-
   state = {
     mode:"first",
     partner:null,
@@ -2160,7 +2428,6 @@ function resetAll(){
     idx:0,
     answers:[]
   };
-
 
   document.getElementById("nickname").value =
     "";
@@ -2189,22 +2456,40 @@ function resetAll(){
   document.getElementById("pairNames").textContent =
     "";
 
+  document.getElementById("compatLabel").textContent =
+    "";
+
+  document.getElementById("compatCopy").textContent =
+    "";
+
   document.getElementById("scoreGrid").innerHTML =
+    "";
+
+  document.getElementById("vibeSummary").textContent =
     "";
 
   document.getElementById("styles").innerHTML =
     "";
 
+  document.getElementById("blindReveal").innerHTML =
+    "";
+
+  document.getElementById("wildSummary").innerHTML =
+    "";
+
+  document.getElementById("differenceSummary").innerHTML =
+    "";
+
   document.getElementById("revealTitle").textContent =
     "";
 
-  document.getElementById("revealBody").innerHTML =
+  document.getElementById("revealBody").textContent =
     "";
 
   document.getElementById("revealBody").className =
     "callout";
 
-  document.getElementById("wildSummary").innerHTML =
+  document.getElementById("conversationStarters").innerHTML =
     "";
 
   document
@@ -2212,9 +2497,7 @@ function resetAll(){
     .classList
     .add("hidden");
 
-
   show("home");
-
 }
 
 </script>
