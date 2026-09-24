@@ -1,6 +1,7 @@
 # The Vibe Check 👀
 
-A mobile-friendly compatibility/love-language game for two people.
+Pick your side of the story.
+Take it first, or enter the private code someone sent you. No peeking at each other’s answers until the reveal. 👀
 
 ## How it works
 - Person 1 takes the test first.
