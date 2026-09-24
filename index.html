@@ -374,15 +374,4 @@ function computeResults(){
   if(A.answers[24]===B.answers[24]) wild.push(`<div class="callout"><strong>Hidden attraction:</strong> You gave the same answer.</div>`);
   if(A.answers[25]===B.answers[25]) wild.push(`<div class="callout"><strong>Dating a current friend:</strong> You gave the same answer.</div>`);
   document.getElementById("wildSummary").innerHTML=wild.length?wild.join(""):`<div class="callout warn">You didn’t have many exact matches here, which may make for a more interesting conversation than a perfect score would.</div>`;
-  show("results");
-
-function resetAll(){
-  state={mode:"first",partner:null,me:null,idx:0,answers:[]};
-  document.getElementById("nickname").value="";
-  document.getElementById("partnerCode").value="";
-  document.getElementById("joinErr").textContent="";
-  show("home");
-}
-</script>
-</body>
-</html>
+  
