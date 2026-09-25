@@ -1,0 +1,37 @@
+name: Integrate Vibe Results 2
+on:
+  push:
+    branches: [qa-results-reveal-2]
+    paths: ['results-reveal-2.js', '.github/workflows/integrate-results-r2.yml']
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: qa-results-reveal-2
+      - name: Load results enhancement
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html'); s=p.read_text(); tag='<script src="./results-reveal-2.js"></script>'
+          if tag not in s:
+              assert '</body></html>' in s
+              s=s.replace('</body></html>',tag+'</body></html>',1); p.write_text(s)
+          PY
+      - name: Verify
+        run: |
+          grep -q 'id="results"' index.html
+          grep -q 'next-move.js' index.html
+          grep -q 'results-reveal-2.js' index.html
+          test -s results-reveal-2.js
+      - name: Commit
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html
+          git commit -m 'Load Vibe Check Results and Reveal 2.0'
+          git push origin HEAD:qa-results-reveal-2
