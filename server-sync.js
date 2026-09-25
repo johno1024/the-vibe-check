@@ -1,1 +1,0 @@
-(()=>{'use strict';const API='https://vmqfpxsxpkxvmzfduooz.supabase.co/functions/v1/chemistry-session';async function post(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json();if(!r.ok)throw new Error(j.error||'server_error');return j}window.VIBE_SESSION_API={post,appType:'vibe-check'};})();
