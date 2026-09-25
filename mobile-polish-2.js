@@ -1,0 +1,1 @@
+(()=>{'use strict';if(document.querySelector('link[data-mobile-polish="2"]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='./mobile-polish-2.css';l.dataset.mobilePolish='2';document.head.appendChild(l);})();
