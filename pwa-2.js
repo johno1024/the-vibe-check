@@ -2,7 +2,7 @@
 'use strict';
 const QA=new URLSearchParams(location.search).get('qa')==='1';
 
-// Keep the PWA registration lightweight. QA must never place an invisible layer over the app.
+// Service worker registration stays lightweight.
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 
 // Shared NO WARNING-inspired question presentation.
@@ -18,24 +18,28 @@ style.textContent=`
 #quiz>.card>.row{margin-top:18px!important;display:grid;grid-template-columns:100px 1fr;gap:10px}
 #quiz .btn{width:100%;min-height:54px;border-radius:17px;font-weight:900}
 #quiz #nextBtn{background:linear-gradient(135deg,#9d55f5,#e44f9a)}
-#intro,#intro .card,#intro .row,#intro .btn{position:relative;pointer-events:auto!important}
+#intro,#intro .card,#intro .row,#intro .btn,#intro input{position:relative;pointer-events:auto!important}
 #intro .btn{z-index:5;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,255,255,.12)}
 @media(max-width:560px){.wrap{padding-left:16px;padding-right:16px}#quiz{min-height:calc(100svh - 90px)}#quiz>.card{padding:20px}.pwa-install{display:none!important}}
 `;
 document.head.appendChild(style);
 
+// IMPORTANT: do not observe body mutations here. The old observer rewrote button
+// text from inside its own mutation callback, which could create a self-sustaining
+// mutation loop in mobile Safari while the keyboard/input UI was changing.
 function syncQuiz(){
  const quiz=document.getElementById('quiz'); if(!quiz||quiz.classList.contains('hidden'))return;
  const n=document.getElementById('nextBtn'),b=document.getElementById('backBtn'),count=document.getElementById('qCount');
- if(b)b.textContent='← BACK';
- if(n)n.textContent=count&&/^27\s*\/\s*27$/.test(count.textContent.trim())?'LOCK IT IN':'OWN IT →';
+ const back='← BACK';
+ const next=count&&/^27\s*\/\s*27$/.test(count.textContent.trim())?'LOCK IT IN':'OWN IT →';
+ if(b&&b.textContent!==back)b.textContent=back;
+ if(n&&n.textContent!==next)n.textContent=next;
 }
-new MutationObserver(syncQuiz).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class']});
 
 if(!QA)return;
 
-// Remove the old QA panel entirely so it cannot intercept touches.
-const legacy=document.getElementById('qaRoot'); if(legacy){legacy.innerHTML='';legacy.style.pointerEvents='none';}
+// Remove the legacy QA overlay so it can never intercept app touches.
+const legacy=document.getElementById('qaRoot');if(legacy){legacy.innerHTML='';legacy.style.pointerEvents='none';}
 
 const qaStyle=document.createElement('style');
 qaStyle.textContent=`
@@ -52,16 +56,16 @@ body.qa-menu-open{overflow:hidden}
 `;
 document.head.appendChild(qaStyle);
 
-// QA-only unanswered navigation. Production remains untouched.
+// QA-only unanswered navigation. Production behavior remains unchanged.
 const normalNext=window.nextQ;
 window.nextQ=function(){
  if(typeof saveText==='function')saveText();
  if(state.idx<26){state.idx++;if(typeof saveProg==='function')saveProg();renderQ();return;}
  const blank=state.answers[state.idx]===undefined||state.answers[state.idx]===null||state.answers[state.idx]==='';
  if(blank){
-   const w=document.getElementById('questionWrap'),n=document.getElementById('nextBtn');
-   if(w)w.innerHTML='<span class="pill">QA REVIEW COMPLETE</span><div class="qtitle">All 27 questions are reachable without answering.</div><p class="sub">Use Back, the QA Menu, or return Home.</p><button class="btn primary" type="button" onclick="qaPreview()">REVIEW FROM Q1</button><button class="btn secondary" type="button" onclick="goHome()">HOME</button>';
-   if(n)n.style.display='none'; return;
+  const w=document.getElementById('questionWrap'),n=document.getElementById('nextBtn');
+  if(w)w.innerHTML='<span class="pill">QA REVIEW COMPLETE</span><div class="qtitle">All 27 questions are reachable without answering.</div><p class="sub">Use Back, the QA Menu, or return Home.</p><button class="btn primary" type="button" onclick="qaPreview()">REVIEW FROM Q1</button><button class="btn secondary" type="button" onclick="goHome()">HOME</button>';
+  if(n)n.style.display='none';return;
  }
  return normalNext();
 };
@@ -73,25 +77,10 @@ const hub=document.createElement('div');hub.id='qaHub';hub.innerHTML=`<div id="q
 document.body.append(menuBtn,hub);
 const open=()=>{hub.classList.add('open');document.body.classList.add('qa-menu-open')};
 const close=()=>{hub.classList.remove('open');document.body.classList.remove('qa-menu-open')};
-menuBtn.addEventListener('click',open);
-hub.querySelector('#qaClose').addEventListener('click',close);
-hub.addEventListener('click',e=>{
- if(e.target===hub){close();return;}
- const a=e.target.dataset.a;if(!a)return;
- close();
- if(a==='questions')qaPreview();
- else if(['aligned','mixed','boundaryA','boundaryB'].includes(a))qaScenario(a);
- else if(a==='home')goHome();
-});
+menuBtn.addEventListener('click',open);hub.querySelector('#qaClose').addEventListener('click',close);
+hub.addEventListener('click',e=>{if(e.target===hub){close();return;}const a=e.target.dataset.a;if(!a)return;close();if(a==='questions')qaPreview();else if(['aligned','mixed','boundaryA','boundaryB'].includes(a))qaScenario(a);else if(a==='home')goHome();});
 
-// Defensive mobile handler for the intro CTA. It uses the same beginQuiz function as production.
+// Keep the intro CTA simple: no global input/change listeners and no DOM observer.
 const intro=document.getElementById('intro');
-if(intro){
- const start=[...intro.querySelectorAll('button')].find(b=>b.textContent.trim()==='Start the Test');
- if(start){
-   start.type='button';
-   start.removeAttribute('onclick');
-   start.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();beginQuiz();});
- }
-}
+if(intro){const start=[...intro.querySelectorAll('button')].find(b=>b.textContent.trim()==='Start the Test');if(start){start.type='button';start.removeAttribute('onclick');start.addEventListener('click',e=>{e.preventDefault();beginQuiz();});}}
 })();
