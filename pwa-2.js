@@ -15,6 +15,7 @@ style.textContent=`
 #quiz .qtitle{font-size:clamp(27px,7vw,42px);line-height:1.05;letter-spacing:-.04em;margin:12px 0 22px;font-weight:900}
 #quiz .option{padding:16px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.10);font-weight:700}
 #quiz .option.selected{border-color:#b66cff;background:linear-gradient(100deg,rgba(166,108,255,.24),rgba(255,95,162,.12))}
+#quiz .multi-note{margin:-10px 0 16px;color:#b5acbf;font-size:13px;font-weight:750}
 #quiz>.card>.row{margin-top:18px!important;display:grid;grid-template-columns:100px 1fr;gap:10px}
 #quiz .btn{width:100%;min-height:54px;border-radius:17px;font-weight:900}
 #quiz #nextBtn{background:linear-gradient(135deg,#9d55f5,#e44f9a)}
@@ -23,6 +24,44 @@ style.textContent=`
 @media(max-width:560px){.wrap{padding-left:16px;padding-right:16px}#quiz{min-height:calc(100svh - 90px)}#quiz>.card{padding:20px}.pwa-install{display:none!important}}
 `;
 document.head.appendChild(style);
+
+// Q22-Q24 are intentionally multi-select. Store the selected answer text itself so
+// the existing blind-reveal output remains readable and share links stay self-contained.
+const multiQuestions=[
+ {text:'Which words describe your ideal relationship?',opts:['Trusting','Playful','Passionate','Peaceful','Adventurous','Supportive','Affectionate','Independent','Emotionally open','Growth-minded']},
+ {text:"What instantly makes somebody more attractive to you?",opts:['Confidence','Humor','Kindness','Intelligence','Ambition','Great communication','Style / presentation','Physical appearance','Emotional maturity','Authenticity']},
+ {text:'What can turn friendship into attraction for you?',opts:['A deeper emotional connection','Flirting / playful tension','Physical chemistry','Seeing a different side of them','More one-on-one time','Vulnerability','Consistency and effort','A shared experience','Realizing the interest is mutual','It usually does not happen for me']}
+];
+[21,22,23].forEach((idx,j)=>Object.assign(QUESTIONS[idx],{type:'multi',text:multiQuestions[j].text,opts:multiQuestions[j].opts}));
+
+const baseRenderMulti=window.renderQ;
+window.renderQ=function(){
+ const q=QUESTIONS[state.idx];
+ if(q.type!=='multi')return baseRenderMulti();
+ const selected=Array.isArray(state.answers[state.idx])?state.answers[state.idx]:[];
+ document.getElementById('sectionName').textContent=q.section;
+ document.getElementById('qCount').textContent=`${state.idx+1} / 27`;
+ document.getElementById('prog').style.width=((state.idx+1)/27*100)+'%';
+ document.getElementById('backBtn').disabled=state.idx===0;
+ document.getElementById('nextBtn').textContent=state.idx===26?'Finish':'Next';
+ const h=`<span class="pill">${esc(q.section)}</span><div class="qtitle">${esc(q.text)}</div><div class="multi-note">Select all that apply.</div><div class="options">${q.opts.map((o,i)=>`<div class="option ${selected.includes(o)?'selected':''}" onclick="pickMulti(${i})"><div class="badge">${selected.includes(o)?'✓':String.fromCharCode(65+i)}</div><div>${esc(o)}</div></div>`).join('')}</div>`;
+ document.getElementById('questionWrap').innerHTML=h;
+};
+window.pickMulti=function(i){
+ const q=QUESTIONS[state.idx],answer=q.opts[i];
+ let selected=Array.isArray(state.answers[state.idx])?[...state.answers[state.idx]]:[];
+ selected=selected.includes(answer)?selected.filter(x=>x!==answer):[...selected,answer];
+ state.answers[state.idx]=selected;
+ if(typeof saveProg==='function')saveProg();
+ renderQ();
+};
+
+const baseNextMulti=window.nextQ;
+window.nextQ=function(){
+ const q=QUESTIONS[state.idx];
+ if(q.type==='multi'&&(!Array.isArray(state.answers[state.idx])||state.answers[state.idx].length===0)&&!QA)return alert('Choose at least one answer before continuing.');
+ return baseNextMulti();
+};
 
 // IMPORTANT: do not observe body mutations here. The old observer rewrote button
 // text from inside its own mutation callback, which could create a self-sustaining
@@ -61,7 +100,7 @@ const normalNext=window.nextQ;
 window.nextQ=function(){
  if(typeof saveText==='function')saveText();
  if(state.idx<26){state.idx++;if(typeof saveProg==='function')saveProg();renderQ();return;}
- const blank=state.answers[state.idx]===undefined||state.answers[state.idx]===null||state.answers[state.idx]==='';
+ const blank=state.answers[state.idx]===undefined||state.answers[state.idx]===null||state.answers[state.idx]===''||(Array.isArray(state.answers[state.idx])&&state.answers[state.idx].length===0);
  if(blank){
   const w=document.getElementById('questionWrap'),n=document.getElementById('nextBtn');
   if(w)w.innerHTML='<span class="pill">QA REVIEW COMPLETE</span><div class="qtitle">All 27 questions are reachable without answering.</div><p class="sub">Use Back, the QA Menu, or return Home.</p><button class="btn primary" type="button" onclick="qaPreview()">REVIEW FROM Q1</button><button class="btn secondary" type="button" onclick="goHome()">HOME</button>';
